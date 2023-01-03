@@ -1,5 +1,4 @@
 import Fastify, { FastifyInstance, RouteShorthandOptions } from "fastify";
-import { Server, IncomingMessage, ServerResponse } from "http";
 import { Animal } from "./src/animal/model";
 import routes from "./src/animal/route";
 
@@ -33,10 +32,10 @@ server.get("/ping", opts, async (request, reply) => {
 
 const start = async () => {
   try {
-    await server.listen({ port: 3000 });
+    await server.listen({ port: 4000 });
     const address = server.server.address();
     const port = typeof address === "string" ? address : address?.port;
-    server.log.info(`server listening on ${port}`);
+    console.log(`server listening on ${port}`);
   } catch (err) {
     server.log.error(err);
     process.exit(1);
