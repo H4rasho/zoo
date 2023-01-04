@@ -1,10 +1,9 @@
-import { FastifyInstance, RouteShorthandOptions } from "fastify";
+import { FastifyInstance } from "fastify";
 import { Optional } from "sequelize";
 import { Species } from "../species/model";
 import { CreateAnimalDto } from "./dto/create-aminal.dto";
 import { Animal } from "./model";
-import { Parents } from "./parents-model";
-import { registerAnimal, registerParent } from "./service";
+import { registerAnimal } from "./service";
 
 const opts = {
   schema: {
@@ -26,26 +25,20 @@ const opts = {
   },
 };
 
-async function routes(
-  fastify: FastifyInstance,
-  options: RouteShorthandOptions
-) {
-  fastify.get("/animals", async (request, reply) => {
+async function routes(fastify: FastifyInstance) {
+  fastify.get("/animals", async () => {
     const animals = await Animal.findAll({
-      include: [
-        Species,
-        { model: Animal, as: "parents" },
-      ],
+      include: [Species, { model: Animal, as: "parents" }],
     });
     return { animals };
   });
 
   fastify.post<{
-    Body: CreateAnimalDto
-  }>("/animals", opts, async (request, reply) => {
-     const animal = request.body;
-     return await registerAnimal(animal);
-    });
+    Body: CreateAnimalDto;
+  }>("/animals", opts, async (request) => {
+    const animal = request.body;
+    return await registerAnimal(animal);
+  });
 
   fastify.put<{
     Body: Optional<CreateAnimalDto, "fatherId" | "motherId">;

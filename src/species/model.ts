@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import { Animal } from "../animal/model";
-import { sequelize } from '../database/connection'
+import { sequelize } from "../database/connection";
 
 export class Species extends Model {
   declare id: string;
@@ -10,18 +10,19 @@ export class Species extends Model {
   declare updatedAt: Date;
 }
 
-Species.init({
-  id: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    defaultValue: DataTypes.UUIDV4,
-    primaryKey: true
+Species.init(
+  {
+    id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      comment: "Nombre de la especie",
+    },
   },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    comment: "Nombre de la especie"
-  }, 
-}, { sequelize})
-
-
+  { sequelize }
+);

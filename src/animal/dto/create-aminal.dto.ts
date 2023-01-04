@@ -5,7 +5,7 @@ export interface CreateAnimalDto {
   [key: string]: string;
   name: string;
   age: string;
-  specieId: Species['id'];
-  fatherId: Animal['id'];
-  motherId: Animal['id'];
+  specieId: Species["id"];
+  fatherId: Animal["id"];
+  motherId: Animal["id"];
 }

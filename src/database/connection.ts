@@ -1,8 +1,7 @@
 import { Sequelize, Dialect } from "sequelize";
 import { DATABASE } from "../../config";
 
-const {USER, PASS, NAME, DIALECT, PORT, HOST} = DATABASE
-
+const { USER, PASS, NAME, DIALECT, PORT, HOST } = DATABASE;
 
 export const sequelize = new Sequelize(NAME, USER, PASS, {
   host: HOST,
