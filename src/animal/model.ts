@@ -1,6 +1,7 @@
 import {Model, DataTypes} from 'sequelize'
 import {sequelize} from '../database/connection'
 import { Species } from '../species/model';
+import { Parents } from './parents-model';
 
 export class Animal extends Model {
  declare id: string;
@@ -39,21 +40,9 @@ Species.hasMany(Animal, {
   foreignKey: 'specieId'
 })
 
-Animal.belongsTo(Animal, {
-  foreignKey: 'fatherId'
+Animal.belongsToMany(Animal, {
+  through: Parents,
+  foreignKey: "animalId",
+  otherKey: "parentId",
+  as: 'parents'
 })
-
-Animal.belongsTo(Animal, {
-  foreignKey: 'motherId'
-})
-
-Animal.hasMany(Animal, {
-  foreignKey: 'fatherId',
-  as: 'childrens'
-})
-
-Animal.hasMany(Animal, {
-  foreignKey: 'motherId',
-  as: 'childrensAsMother'
-})
-

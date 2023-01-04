@@ -3,6 +3,8 @@ import { Optional } from "sequelize";
 import { Species } from "../species/model";
 import { CreateAnimalDto } from "./dto/create-aminal.dto";
 import { Animal } from "./model";
+import { Parents } from "./parents-model";
+import { registerAnimal, registerParent } from "./service";
 
 const opts = {
   schema: {
@@ -32,20 +34,18 @@ async function routes(
     const animals = await Animal.findAll({
       include: [
         Species,
-        { model: Animal, as: "childrens" },
-        { model: Animal, as: "childrensAsMother" },
+        { model: Animal, as: "parents" },
       ],
     });
     return { animals };
   });
 
   fastify.post<{
-    Body: Optional<CreateAnimalDto, "fatherId" | "motherId">;
+    Body: CreateAnimalDto
   }>("/animals", opts, async (request, reply) => {
-    const animal = request.body;
-    const animalCreated = await Animal.create(animal);
-    return { animalCreated };
-  });
+     const animal = request.body;
+     return await registerAnimal(animal);
+    });
 
   fastify.put<{
     Body: Optional<CreateAnimalDto, "fatherId" | "motherId">;
