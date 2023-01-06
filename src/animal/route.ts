@@ -3,7 +3,8 @@ import { Optional } from "sequelize";
 import { Species } from "../species/model";
 import { CreateAnimalDto } from "./dto/create-aminal.dto";
 import { Animal } from "./model";
-import { registerAnimal } from "./service";
+import { registerAnimal, updateAnimal } from "./service";
+import { UpdateAnimalDto } from "./dto/update-animal.dto";
 
 const opts = {
   schema: {
@@ -41,17 +42,20 @@ async function routes(fastify: FastifyInstance) {
   });
 
   fastify.put<{
-    Body: Optional<CreateAnimalDto, "fatherId" | "motherId">;
+    Body: Optional<UpdateAnimalDto, "fatherId" | "motherId" | "id">;
     Params: { id: Animal["id"] };
   }>("/animals/:id", opts, async (request, reply) => {
-    const animal = request.body;
-    const exitAnimal = await Animal.findByPk(request.params.id);
-    if (!exitAnimal) {
-      reply.code(404).send();
-      return;
+    try {
+      const animal = request.body;
+      const id = request.params.id;
+      const animalUpdated = await updateAnimal({
+        ...animal,
+        id,
+      });
+      return { animalUpdated };
+    } catch (error) {
+      reply.code(404).send(error);
     }
-    const animalUpdated = await exitAnimal.update(animal);
-    return { animalUpdated };
   });
 
   fastify.delete<{
