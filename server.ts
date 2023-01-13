@@ -7,6 +7,10 @@ const server: FastifyInstance = Fastify();
 
 db();
 
+server.get("/", async () => {
+  return { hello: "world" };
+});
+
 server.register(routes);
 
 const start = async () => {
