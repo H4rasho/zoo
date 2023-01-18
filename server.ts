@@ -1,17 +1,16 @@
-import Fastify, { FastifyInstance } from "fastify";
-import routes from "./src/animal/route";
+import app from "./src/app";
 
 import { db } from "./src/database/connection";
 
-const server: FastifyInstance = Fastify();
-
 db();
-
-server.get("/", async () => {
-  return { hello: "world" };
+const server = app({
+  logger: {
+    level: "info",
+    transport: {
+      target: "pino-pretty",
+    },
+  },
 });
-
-server.register(routes);
 
 const start = async () => {
   try {
