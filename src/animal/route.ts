@@ -37,9 +37,10 @@ async function routes(fastify: FastifyInstance) {
 
   fastify.post<{
     Body: CreateAnimalDto;
-  }>("/animals", opts, async (request) => {
+  }>("/animals", opts, async (request, reply) => {
     const animal = request.body;
-    return await registerAnimal(animal);
+    const animalRegistered = await registerAnimal(animal);
+    return reply.code(201).send(animalRegistered);
   });
 
   fastify.put<{

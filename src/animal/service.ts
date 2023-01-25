@@ -28,7 +28,7 @@ export const registerParent = async ({
   animalId: Animal["id"];
   parentId: Animal["id"];
 }) => {
-  await Parents.create({ animalId, parentId });
+  return await Parents.create({ animalId, parentId });
 };
 
 export const updateAnimal = async (animal: UpdateAnimalDto) => {

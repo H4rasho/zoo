@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "test": "tap --reporter=list --watch",
+    "test": "tap --watch",
     "tsc": "tsc",
     "start": "node build/server.js",
     "dev": "ts-node-dev --poll server.ts",
@@ -24,6 +24,7 @@
     "@commitlint/cli": "17.4.0",
     "@commitlint/config-conventional": "17.4.0",
     "@types/node": "18.11.17",
+    "@types/tap": "15.0.7",
     "@typescript-eslint/eslint-plugin": "5.48.0",
     "@typescript-eslint/parser": "5.48.0",
     "eslint": "8.31.0",
