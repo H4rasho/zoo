@@ -31,8 +31,12 @@ const opts = {
 };
 
 async function routes(fastify: FastifyInstance) {
-  fastify.get("/animals", async () => {
-    return await findAllAnimals();
+  fastify.get<{
+    Querystring: { offset: number; limit: number };
+  }>("/animals", async (request) => {
+    const offset = request.query.offset ?? 0;
+    const limit = request.query.limit ?? 10;
+    return await findAllAnimals({ offset, limit });
   });
 
   fastify.post<{

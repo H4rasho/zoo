@@ -4,9 +4,17 @@ import type { CreateAnimalDto } from "./dto/create-aminal.dto";
 import type { UpdateAnimalDto } from "./dto/update-animal.dto";
 import { Species } from "../species/model";
 
-export const findAllAnimals = async () => {
+export const findAllAnimals = async ({
+  offset,
+  limit,
+}: {
+  offset?: number;
+  limit?: number;
+}) => {
   const animals = await Animal.findAll({
     include: [Species, { model: Animal, as: "parents" }],
+    offset,
+    limit,
   });
   return { animals };
 };
