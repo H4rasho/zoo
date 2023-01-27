@@ -31,15 +31,20 @@ const opts = {
 };
 
 async function routes(fastify: FastifyInstance) {
-  fastify.get("/animals", async () => {
-    return await findAllAnimals();
+  fastify.get<{
+    Querystring: { offset: number; limit: number };
+  }>("/animals", async (request) => {
+    const offset = request.query.offset ?? 0;
+    const limit = request.query.limit ?? 10;
+    return await findAllAnimals({ offset, limit });
   });
 
   fastify.post<{
     Body: CreateAnimalDto;
-  }>("/animals", opts, async (request) => {
+  }>("/animals", opts, async (request, reply) => {
     const animal = request.body;
-    return await registerAnimal(animal);
+    const animalRegistered = await registerAnimal(animal);
+    return reply.code(201).send(animalRegistered);
   });
 
   fastify.put<{
