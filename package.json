@@ -4,20 +4,24 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "tsc": "tsc",
-    "start": "node build/server.js",
-    "dev": "ts-node-dev --poll server.ts",
+    "start": "nest start",
+    "start:dev": "nest start --watch",
     "lint": "npx eslint . --ext .ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@nestjs/common": "9.2.1",
+    "@nestjs/core": "9.2.1",
+    "@nestjs/mapped-types": "*",
+    "@nestjs/platform-express": "9.2.1",
     "dotenv": "16.0.3",
     "fastify": "4.10.2",
     "pg": "8.8.0",
     "pg-hstore": "2.3.4",
+    "reflect-metadata": "0.1.13",
+    "rxjs": "7.8.0",
     "sequelize": "6.28.0"
   },
   "devDependencies": {

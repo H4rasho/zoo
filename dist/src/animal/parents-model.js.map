@@ -1,0 +1,1 @@
+{"version":3,"file":"parents-model.js","sourceRoot":"","sources":["../../../src/animal/parents-model.ts"],"names":[],"mappings":";;;AAAA,yCAA6C;AAG7C,uDAAmD;AAEnD,MAAa,OAAQ,SAAQ,iBAAK;CAGjC;AAHD,0BAGC;AAED,OAAO,CAAC,IAAI,CACV;IACE,QAAQ,EAAE;QACR,IAAI,EAAE,qBAAS,CAAC,IAAI;KACrB;IACD,QAAQ,EAAE;QACR,IAAI,EAAE,qBAAS,CAAC,IAAI;KACrB;CACF,EACD,EAAE,SAAS,EAAT,sBAAS,EAAE,CACd,CAAC"}
