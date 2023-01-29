@@ -10,7 +10,7 @@ import {
 import { Species } from "src/species/entites/specie.entity";
 
 @Table({
-  tableName: "Animal",
+  tableName: "Animals",
 })
 export class Animal extends Model {
   @Column({
