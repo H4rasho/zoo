@@ -1,5 +1,5 @@
 import { DataTypes, Model } from "sequelize";
-import { Animal } from "./model";
+import { Animal } from "./entities/animal.entity";
 
 import { sequelize } from "../database/connection";
 

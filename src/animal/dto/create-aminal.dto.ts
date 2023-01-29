@@ -1,5 +1,5 @@
-import { Species } from "../../species/model";
-import { Animal } from "../model";
+import { Species } from "src/species/entites/specie.entity";
+import { Animal } from "../entities/animal.entity";
 
 export interface CreateAnimalDto {
   [key: string]: string;

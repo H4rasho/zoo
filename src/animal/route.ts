@@ -1,7 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { Optional } from "sequelize";
 import { CreateAnimalDto } from "./dto/create-aminal.dto";
-import { Animal } from "./model";
+import { Animal } from "./entities/animal.entity";
 import {
   deleteAnimal,
   findAllAnimals,

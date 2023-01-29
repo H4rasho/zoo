@@ -1,8 +1,8 @@
-import { Animal } from "./model";
+import { Animal } from "./entities/animal.entity";
 import { Parents } from "./parents-model";
 import type { CreateAnimalDto } from "./dto/create-aminal.dto";
 import type { UpdateAnimalDto } from "./dto/update-animal.dto";
-import { Species } from "../species/model";
+import { Species } from "src/species/entites/specie.entity";
 
 export const findAllAnimals = async () => {
   const animals = await Animal.findAll({
