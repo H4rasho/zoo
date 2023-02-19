@@ -6,9 +6,10 @@
   "scripts": {
     "start": "nest start",
     "start:dev": "nest start --watch",
-    "lint": "npx eslint . --ext .ts",
+    "lint": "eslint src --fix --ext .ts & prettier --check .",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
