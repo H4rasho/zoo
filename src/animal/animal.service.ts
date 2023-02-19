@@ -48,15 +48,11 @@ export class AnimalService {
   }
 
   async updateAnimal(animal: UpdateAnimalDto) {
-    const exitAnimal = await this.animalModel.findByPk(animal.id);
-    if (!exitAnimal) throw new Error("Animal not found");
-    return await exitAnimal.update(animal);
+    const { id, ...animalData } = animal;
+    return await this.animalModel.update(animalData, { where: { id } });
   }
 
   async deleteAnimal(id: Animal["id"]) {
-    const exitAnimal = await this.animalModel.findByPk(id);
-    if (!exitAnimal) throw new Error("Animal not found");
-    await exitAnimal.destroy();
-    return exitAnimal;
+    return await this.animalModel.destroy({ where: { id } });
   }
 }
