@@ -19,12 +19,12 @@ export class AnimalController {
   }
 
   @Put()
-  update(@Body() animal: UpdateAnimalDto): Promise<Animal> {
+  update(@Body() animal: UpdateAnimalDto) {
     return this.animalService.updateAnimal(animal);
   }
 
   @Delete(":id")
-  delete(@Param("id") id: string): Promise<Animal> {
+  delete(@Param("id") id: string) {
     return this.animalService.deleteAnimal(id);
   }
 }
